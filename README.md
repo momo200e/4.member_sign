@@ -16,40 +16,30 @@
 ## 系統功能(頁面)
  
  
-- 登入畫面(product)
+- 登入畫面(user/sign_up)
 
-  書本CRUD
+- 首頁(pages)
 
 
 
 ## MODEL設計
 
-我們在建立MODEL的時候，Coupon我們有設一個`allow_multiple_use`欄位，決定該折價卷是否可重複使用，所以我們Product需要欄位`coupon_id`來紀錄折價卷，以方便後續判斷。
-
-**(`coupon_id`欄位之後再用`add_columns`建立)**
+Devise長出來的`User`資料表，我們為了要進行權限管理，還要加上一欄`role`角色欄位，等等我們會用一個`migration`來新增
 
 
 
-**Product 商品資料表**
-
- - title: String   
- - price: integer   
- - description: text
- - coupon_id: integer
-
- - 關係：belongs_to :coupon
 
 
  
-**其中要注意的是，一張折價卷可用在多本不同本書上，是一對多的關係，所以 `has_many :products`和`belongs_to :coupon`建好Model記得加上去**
 
  
 ## 技術運用(Gem)
   - bootstrap
   - simple_form
   - devise
-> 這個練習會用到devise這套件，對於判斷登入狀態非常的方便
-
+  - cancancan
+> 這個練習會用到devise這套件，可以快速的長出登入畫面，非常的方便
+> 這個練習會用到cancancan這套件，對於判斷登入狀態非常的方便，方便我們等等進行角色權限管理
 
 ## 開始實作~
 
@@ -166,7 +156,7 @@ end
 
 `can :read, :all`意思是此使用者，只能讀資料
 
-**[cancancan詳細應用請查閱我另外整理的文章](https://github.com/momo200e/Ruby_Rails_Notes/blob/master/Gem_Notes.md#devise會員機制)**
+**[cancancan詳細應用請查閱我另外整理的文章](https://github.com/momo200e/Ruby_Rails_Notes/blob/master/Gem_Notes.md#cancancan)**
 
 這邊用一個`staff?`方法，判斷登入的帳號角色是否為staff
 這方法建議在modle上新增
