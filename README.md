@@ -112,8 +112,8 @@ root "page#index"
 
 
 ### Step.4 cancancan 實作角色權限管理 - Part 1
-**為了要判斷登入身分，所以要用`migration`先新增身分欄位role`**
-新增一個`migration``rails g migration add_role`
+**為了要判斷登入身分，所以要用`migration`先新增身分欄位role**
+新增一個`migration`  `rails g migration add_role`
 ```ruby
 # migrate
  def change
